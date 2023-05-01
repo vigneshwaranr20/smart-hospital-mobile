@@ -5,13 +5,16 @@ import 'package:smart_hospital_mobile_app/register.dart';
 import 'package:smart_hospital_mobile_app/splash_screen.dart';
 import 'package:http/http.dart' as http;
 import 'Api/imageApi.dart';
-import 'Login.dart';
+
 import 'appointment.dart';
 import 'model/imagemodel.dart';
+import 'History.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: SmartHospital(),
+    home: History(
+      mobile: '7777777777',
+    ),
     debugShowCheckedModeBanner: false,
   ));
 }
@@ -287,45 +290,54 @@ class _SmartHospitalState extends State<SmartHospital> {
                                     right: 10.0,
                                     top: 15.0),
                                 color: Colors.white,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(left: 0.0, top: 10.0),
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                        child: Image.network(
-                                          doctorList[index].doctorImage,
-                                          fit: BoxFit.cover,
-                                          width: 152.0,
-                                          height: 145.0,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Register()),
+                                    );
+                                  },
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            left: 0.0, top: 10.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(0.0),
+                                          child: Image.network(
+                                            doctorList[index].doctorImage,
+                                            fit: BoxFit.cover,
+                                            width: 152.0,
+                                            height: 145.0,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 9.0),
-                                      child: Text(
-                                        doctorList[index].doctorName,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.normal,
-                                          color: Colors.blue,
+                                      Container(
+                                        margin: EdgeInsets.only(top: 9.0),
+                                        child: Text(
+                                          doctorList[index].doctorName,
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.normal,
+                                            color: Colors.blue,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(top: 1.0),
-                                      child: Text(
-                                        doctorList[index].specialist,
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.blue,
+                                      Container(
+                                        margin: EdgeInsets.only(top: 1.0),
+                                        child: Text(
+                                          doctorList[index].specialist,
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            color: Colors.blue,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
@@ -545,7 +557,13 @@ class _SmartHospitalState extends State<SmartHospital> {
                           size: 35,
                           color: Colors.blue,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SmartHospital()),
+                          );
+                        },
                       ),
                     ),
                     Positioned(
@@ -574,7 +592,12 @@ class _SmartHospitalState extends State<SmartHospital> {
                       size: 40,
                       color: Color(0Xff414141),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Register()),
+                      );
+                    },
                   ),
                 ),
                 Container(
@@ -584,7 +607,12 @@ class _SmartHospitalState extends State<SmartHospital> {
                       size: 40,
                       color: Color(0Xff414141),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Register()),
+                      );
+                    },
                   ),
                 ),
                 Container(
@@ -594,7 +622,12 @@ class _SmartHospitalState extends State<SmartHospital> {
                       size: 40,
                       color: Color(0Xff1580EB),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Register()),
+                      );
+                    },
                   ),
                 ),
               ],
