@@ -3,11 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:smart_hospital_mobile_app/main.dart';
+import 'package:smart_hospital_mobile_app/register.dart';
 import 'Api/dropdownapi.dart';
+import 'History.dart';
 
 class Appointment extends StatefulWidget {
-  const Appointment({Key? key}) : super(key: key);
-
   @override
   State<Appointment> createState() => _AppointmentState();
 }
@@ -21,6 +22,7 @@ class _AppointmentState extends State<Appointment> {
   TextEditingController schedcontroller5 = TextEditingController();
   TextEditingController schedcontroller6 = TextEditingController();
   TextEditingController schedcontroller7 = TextEditingController();
+
   String? _selectedSpecialist;
   List<String> _specialists = [];
   List<String> _doctors = [];
@@ -90,6 +92,7 @@ class _AppointmentState extends State<Appointment> {
                               child: Container(
                                 padding: EdgeInsets.only(left: 11),
                                 child: TextField(
+                                  controller: schedcontroller,
                                   decoration: InputDecoration(
                                       labelText: 'Patient Mobile Number',
                                       labelStyle: TextStyle(
@@ -106,6 +109,7 @@ class _AppointmentState extends State<Appointment> {
                               child: Container(
                                 padding: EdgeInsets.only(left: 11),
                                 child: TextField(
+                                  controller: schedcontroller1,
                                   decoration: InputDecoration(
                                       labelText: 'Patient Name',
                                       labelStyle: TextStyle(
@@ -122,6 +126,7 @@ class _AppointmentState extends State<Appointment> {
                               child: Container(
                                 padding: EdgeInsets.only(left: 11),
                                 child: TextField(
+                                  controller: schedcontroller2,
                                   decoration: InputDecoration(
                                       labelText: 'Patient Disease',
                                       labelStyle: TextStyle(
@@ -141,6 +146,7 @@ class _AppointmentState extends State<Appointment> {
                                     child: Container(
                                       padding: EdgeInsets.only(left: 11),
                                       child: TextField(
+                                        controller: schedcontroller3,
                                         decoration: InputDecoration(
                                           labelText: 'Patient Age',
                                           labelStyle: TextStyle(
@@ -219,6 +225,7 @@ class _AppointmentState extends State<Appointment> {
                               child: Container(
                                 padding: EdgeInsets.only(left: 11),
                                 child: TextField(
+                                  controller: schedcontroller5,
                                   decoration: InputDecoration(
                                       labelText: 'Patient Address',
                                       labelStyle: TextStyle(
@@ -384,7 +391,7 @@ class _AppointmentState extends State<Appointment> {
                                     // Make the API call
                                     final response = await http.post(
                                       Uri.parse(
-                                          'http://localhost:8080/hospital/submitAppointment'),
+                                          'http://10.0.2.2:8080/hospital/submitAppointment'),
                                       headers: {
                                         'Content-Type': 'application/json'
                                       },
@@ -415,15 +422,15 @@ class _AppointmentState extends State<Appointment> {
                                           actions: [
                                             TextButton(
                                               onPressed: () {
-                                                String PatientMobileNumber =
+                                                String mobile =
                                                     schedcontroller.text;
-                                                // Navigator.push(
-                                                //   context,
-                                                //   MaterialPageRoute(
-                                                //       builder: (context) => History(
-                                                //           PatientMobileNumber:
-                                                //               PatientMobileNumber)),
-                                                // );
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) => History(
+                                                          mobile:
+                                                              PatientMobileNumber)),
+                                                );
                                               },
                                               child: Text('OK'),
                                             ),
@@ -515,7 +522,13 @@ class _AppointmentState extends State<Appointment> {
                       size: 40,
                       color: Color(0Xff414141),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SmartHospital()),
+                      );
+                    },
                   ),
                 ),
                 Stack(
@@ -527,7 +540,12 @@ class _AppointmentState extends State<Appointment> {
                           size: 35,
                           color: Colors.blue,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Register()),
+                          );
+                        },
                       ),
                     ),
                     Positioned(
@@ -556,7 +574,12 @@ class _AppointmentState extends State<Appointment> {
                       size: 40,
                       color: Color(0Xff414141),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Register()),
+                      );
+                    },
                   ),
                 ),
                 Container(
@@ -566,7 +589,12 @@ class _AppointmentState extends State<Appointment> {
                       size: 40,
                       color: Color(0Xff1580EB),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Register()),
+                      );
+                    },
                   ),
                 ),
               ],
