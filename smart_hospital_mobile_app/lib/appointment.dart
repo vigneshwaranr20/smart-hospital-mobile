@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_hospital_mobile_app/main.dart';
@@ -75,7 +76,12 @@ class _AppointmentState extends State<Appointment> {
                         child: Column(
                           children: [
                             Container(
-                              margin: EdgeInsets.only(top: 30),
+                                margin: EdgeInsets.only(top: 22),
+                                width: 80,
+                                height: 3,
+                                color: Color(0xff1580EB)),
+                            Container(
+                              margin: EdgeInsets.only(top: 10),
                               child: Text('Book Appointment',
                                   style: TextStyle(
                                       color: Colors.cyan,
@@ -93,10 +99,17 @@ class _AppointmentState extends State<Appointment> {
                                 padding: EdgeInsets.only(left: 11),
                                 child: TextField(
                                   controller: schedcontroller,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    LengthLimitingTextInputFormatter(10),
+                                  ],
                                   decoration: InputDecoration(
-                                      labelText: 'Patient Mobile Number',
-                                      labelStyle: TextStyle(
-                                          backgroundColor: Colors.white)),
+                                    labelText: 'Patient Mobile Number',
+                                    labelStyle: TextStyle(
+                                        backgroundColor: Colors.white),
+                                    border: InputBorder.none,
+                                  ),
                                 ),
                               ),
                             ),
@@ -128,9 +141,11 @@ class _AppointmentState extends State<Appointment> {
                                 child: TextField(
                                   controller: schedcontroller2,
                                   decoration: InputDecoration(
-                                      labelText: 'Patient Disease',
-                                      labelStyle: TextStyle(
-                                          backgroundColor: Colors.white)),
+                                    labelText: 'Patient Disease',
+                                    labelStyle: TextStyle(
+                                        backgroundColor: Colors.white),
+                                    border: InputBorder.none,
+                                  ),
                                 ),
                               ),
                             ),
@@ -147,10 +162,17 @@ class _AppointmentState extends State<Appointment> {
                                       padding: EdgeInsets.only(left: 11),
                                       child: TextField(
                                         controller: schedcontroller3,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter
+                                              .digitsOnly,
+                                          LengthLimitingTextInputFormatter(2),
+                                        ],
                                         decoration: InputDecoration(
                                           labelText: 'Patient Age',
                                           labelStyle: TextStyle(
                                               backgroundColor: Colors.white),
+                                          border: InputBorder.none,
                                         ),
                                       ),
                                     ),
@@ -159,7 +181,9 @@ class _AppointmentState extends State<Appointment> {
                                     width: 156,
                                     height: 50,
                                     margin: EdgeInsets.only(
-                                        top: 27, left: 20, right: 10),
+                                      top: 27,
+                                      left: 1,
+                                    ),
                                     color: Color(0xffEAF4FF),
                                     child: Container(
                                       padding: EdgeInsets.only(left: 11),
@@ -171,10 +195,11 @@ class _AppointmentState extends State<Appointment> {
                                         decoration: InputDecoration(
                                           icon: Icon(Icons.calendar_today,
                                               color: Color(0xff707070)),
-                                          labelText: "Schedule Date",
+                                          labelText: "Schedule date",
                                           labelStyle: TextStyle(
                                               color: Color(0xff707070),
                                               backgroundColor: Colors.white),
+                                          border: InputBorder.none,
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: Colors.transparent),
@@ -227,9 +252,11 @@ class _AppointmentState extends State<Appointment> {
                                 child: TextField(
                                   controller: schedcontroller5,
                                   decoration: InputDecoration(
-                                      labelText: 'Patient Address',
-                                      labelStyle: TextStyle(
-                                          backgroundColor: Colors.white)),
+                                    labelText: 'Patient Address',
+                                    labelStyle: TextStyle(
+                                        backgroundColor: Colors.white),
+                                    border: InputBorder.none,
+                                  ),
                                 ),
                               ),
                             ),
@@ -246,16 +273,21 @@ class _AppointmentState extends State<Appointment> {
                                   color: Colors.white,
                                   child: const Text(
                                     'Select a Specialist',
-                                    style: TextStyle(color: Color(0xff707070)),
+                                    style: TextStyle(
+                                      color: Color(0xff707070),
+                                    ),
                                   ),
                                 ),
                                 items: _specialists
                                     .map((specialist) => DropdownMenuItem(
                                           value: specialist,
-                                          child: Text(
-                                            specialist,
-                                            style:
-                                                TextStyle(color: Colors.black),
+                                          child: Container(
+                                            padding: EdgeInsets.only(left: 11),
+                                            child: Text(
+                                              specialist,
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
                                           ),
                                         ))
                                     .toList(),
@@ -267,6 +299,7 @@ class _AppointmentState extends State<Appointment> {
                                   });
                                 },
                                 decoration: InputDecoration(
+                                  border: InputBorder.none,
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide:
                                         BorderSide(color: Colors.transparent),
@@ -293,9 +326,12 @@ class _AppointmentState extends State<Appointment> {
                                 hint: Container(
                                   padding: EdgeInsets.only(left: 11),
                                   color: Colors.white,
-                                  child: Text(
-                                    'Select a Doctor',
-                                    style: TextStyle(color: Color(0xff707070)),
+                                  child: Container(
+                                    child: Text(
+                                      'Select a Doctor',
+                                      style:
+                                          TextStyle(color: Color(0xff707070)),
+                                    ),
                                   ),
                                 ),
                                 items: _doctors
@@ -304,9 +340,13 @@ class _AppointmentState extends State<Appointment> {
                                     .map(
                                       (doctor) => DropdownMenuItem(
                                         value: doctor,
-                                        child: Text(
-                                          doctor,
-                                          style: TextStyle(color: Colors.black),
+                                        child: Container(
+                                          padding: EdgeInsets.only(left: 11),
+                                          child: Text(
+                                            doctor,
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
                                         ),
                                       ),
                                     )
@@ -317,6 +357,7 @@ class _AppointmentState extends State<Appointment> {
                                   });
                                 },
                                 decoration: InputDecoration(
+                                  border: InputBorder.none,
                                   focusedBorder: UnderlineInputBorder(
                                     borderSide:
                                         BorderSide(color: Colors.transparent),
@@ -391,7 +432,7 @@ class _AppointmentState extends State<Appointment> {
                                     // Make the API call
                                     final response = await http.post(
                                       Uri.parse(
-                                          'http://10.0.2.2:8080/hospital/submitAppointment'),
+                                          'http://192.168.1.141:8080/hospital/submitAppointment'),
                                       headers: {
                                         'Content-Type': 'application/json'
                                       },

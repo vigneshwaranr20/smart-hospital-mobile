@@ -10,7 +10,7 @@ class HistoryDataApi {
     print(requestBodyJson);
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8080/hospital/getHistoryData'),
+      Uri.parse('http://192.168.1.141:8080/hospital/getHistoryData'),
       headers: {
         'Content-Type': 'application/json',
       },
