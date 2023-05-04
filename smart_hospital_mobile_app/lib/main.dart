@@ -12,9 +12,7 @@ import 'History.dart';
 
 void main() {
   runApp(MaterialApp(
-    home: History(
-      mobile: '7777777777',
-    ),
+    home: Splash(),
     debugShowCheckedModeBanner: false,
   ));
 }
@@ -46,6 +44,7 @@ class _SmartHospitalState extends State<SmartHospital> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Color(0xffEAF4FF),
         title: Row(
           children: [
@@ -104,61 +103,78 @@ class _SmartHospitalState extends State<SmartHospital> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Stack(
-                    children: [
-                      Container(
-                        color: Color(0xff1580EB),
-                        height: 134,
-                        width: 390,
-                        margin: EdgeInsets.only(left: 20, right: 20, top: 15),
-                        child: Column(
-                          children: [
-                            Row(
+                  SizedBox(
+                    height: 150,
+                    width: 400,
+                    child: Stack(
+                      children: [
+                        Container(
+                          color: Color(0xff1580EB),
+                          height: 134,
+                          width: 390,
+                          margin: EdgeInsets.only(left: 20, right: 20, top: 15),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        'Easy Same or Next day \n Appointment',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 12,
+                                            color: Colors.white),
+                                      ),
+                                      margin:
+                                          EdgeInsets.only(left: 10, bottom: 50),
+                                    ),
+                                    Container(
+                                      width: 155,
+                                      height: 118,
+                                      margin: EdgeInsets.only(top: 8, left: 25),
+                                      child: Image.network(
+                                          'https://img.freepik.com/free-photo/doctor-with-stethoscope-hands-hospital-background_1423-1.jpg?w=740&t=st=1682680903~exp=1682681503~hmac=9b33272404fbe431ef957e2a3461b4a4cadb1f4b698ab74855ee031ac02f223d'),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          top: 82,
+                          right: 180,
+                          width: 180,
+                          bottom: 20,
+                          child: Container(
+                            width: 143,
+                            height: 32,
+                            child: ButtonBar(
                               children: [
-                                Container(
-                                  child: Text(
-                                    'Easy Same or Next day \n Appointment',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 16,
-                                        color: Colors.white),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                      backgroundColor: Colors.white),
+                                  child: Container(
+                                    child: Text(
+                                      'Appointment Book ',
+                                      style: TextStyle(
+                                        color: Color(0xff1580EB),
+                                      ),
+                                    ),
                                   ),
-                                  margin: EdgeInsets.only(left: 10, bottom: 50),
-                                ),
-                                Container(
-                                  width: 165,
-                                  height: 118,
-                                  margin: EdgeInsets.only(top: 8),
-                                  child: Image.network(
-                                      'https://img.freepik.com/free-photo/doctor-with-stethoscope-hands-hospital-background_1423-1.jpg?w=740&t=st=1682680903~exp=1682681503~hmac=9b33272404fbe431ef957e2a3461b4a4cadb1f4b698ab74855ee031ac02f223d'),
-                                ),
+                                )
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 82, right: 200),
-                        child: ButtonBar(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                  ),
-                                  backgroundColor: Colors.white),
-                              child: Text(
-                                'Appointment Book ',
-                                style: TextStyle(
-                                  color: Color(0xff1580EB),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 20, right: 282),

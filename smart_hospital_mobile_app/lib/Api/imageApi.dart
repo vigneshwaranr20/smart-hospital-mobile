@@ -6,7 +6,7 @@ import '../model/imagemodel.dart';
 class doctorDetails {
   Future<Welcome> getImages() async {
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8080/hospital/AllDoctorsDetails'),
+      Uri.parse('http://192.168.1.141:8080/hospital/AllDoctorsDetails'),
       headers: {
         'Content-Type': 'application/json',
       },

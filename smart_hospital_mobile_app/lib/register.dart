@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:smart_hospital_mobile_app/history.dart';
 
-import 'Login.dart';
 import 'appointment.dart';
 import 'main.dart';
 
@@ -25,6 +24,7 @@ class _RegisterState extends State<Register> {
   TextEditingController RegController = TextEditingController();
   TextEditingController RegController1 = TextEditingController();
   TextEditingController RegController2 = TextEditingController();
+
   bool _validate = false;
   bool _showLoginContent = true;
   bool _showRegisterContent = false;
@@ -152,6 +152,7 @@ class _RegisterState extends State<Register> {
                                       ),
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 11),
                                       width: 391,
                                       height: 50,
                                       margin: EdgeInsets.only(
@@ -160,13 +161,22 @@ class _RegisterState extends State<Register> {
                                       color: Color(0xffEAF4FF),
                                       child: TextField(
                                         controller: _controller,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter
+                                              .digitsOnly,
+                                          LengthLimitingTextInputFormatter(10),
+                                        ],
                                         decoration: InputDecoration(
-                                            labelText: 'Mobile Number',
-                                            labelStyle: TextStyle(
-                                                backgroundColor: Colors.white)),
+                                          labelText: 'Mobile Number',
+                                          labelStyle: TextStyle(
+                                              backgroundColor: Colors.white),
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 11),
                                       margin: EdgeInsets.only(
                                         top: 38,
                                       ),
@@ -175,10 +185,13 @@ class _RegisterState extends State<Register> {
                                       color: Color(0xffEAF4FF),
                                       child: TextField(
                                         controller: _controller1,
+                                        obscureText: true,
                                         decoration: InputDecoration(
-                                            labelText: ' Password',
-                                            labelStyle: TextStyle(
-                                                backgroundColor: Colors.white)),
+                                          labelText: ' Password',
+                                          labelStyle: TextStyle(
+                                              backgroundColor: Colors.white),
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                     ),
                                     GestureDetector(
@@ -195,7 +208,7 @@ class _RegisterState extends State<Register> {
 
                                         final response = await http.post(
                                           Uri.parse(
-                                              'http://10.0.2.2:8080/hospital/Login'),
+                                              'http://192.168.1.141:8080/hospital/Login'),
                                           headers: {
                                             'Content-Type': 'application/json',
                                           },
@@ -289,6 +302,7 @@ class _RegisterState extends State<Register> {
                                       ),
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 11),
                                       width: 391,
                                       height: 50,
                                       margin: EdgeInsets.only(
@@ -297,13 +311,22 @@ class _RegisterState extends State<Register> {
                                       color: Color(0xffEAF4FF),
                                       child: TextField(
                                         controller: RegController,
+                                        keyboardType: TextInputType.number,
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter
+                                              .digitsOnly,
+                                          LengthLimitingTextInputFormatter(10),
+                                        ],
                                         decoration: InputDecoration(
-                                            labelText: 'Mobile Number',
-                                            labelStyle: TextStyle(
-                                                backgroundColor: Colors.white)),
+                                          labelText: 'Mobile Number',
+                                          labelStyle: TextStyle(
+                                              backgroundColor: Colors.white),
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 11),
                                       margin: EdgeInsets.only(
                                         top: 38,
                                       ),
@@ -311,14 +334,18 @@ class _RegisterState extends State<Register> {
                                       height: 50,
                                       color: Color(0xffEAF4FF),
                                       child: TextField(
+                                        obscureText: true,
                                         controller: RegController1,
                                         decoration: InputDecoration(
-                                            labelText: 'Create Password',
-                                            labelStyle: TextStyle(
-                                                backgroundColor: Colors.white)),
+                                          labelText: 'Create Password',
+                                          labelStyle: TextStyle(
+                                              backgroundColor: Colors.white),
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                     ),
                                     Container(
+                                      padding: EdgeInsets.only(left: 11),
                                       margin: EdgeInsets.only(
                                         top: 38,
                                       ),
@@ -327,10 +354,13 @@ class _RegisterState extends State<Register> {
                                       color: Color(0xffEAF4FF),
                                       child: TextField(
                                         controller: RegController2,
+                                        obscureText: true,
                                         decoration: InputDecoration(
-                                            labelText: 'Confirm Password',
-                                            labelStyle: TextStyle(
-                                                backgroundColor: Colors.white)),
+                                          labelText: 'Confirm Password',
+                                          labelStyle: TextStyle(
+                                              backgroundColor: Colors.white),
+                                          border: InputBorder.none,
+                                        ),
                                       ),
                                     ),
                                     GestureDetector(
@@ -352,7 +382,7 @@ class _RegisterState extends State<Register> {
 
                                         final response = await http.post(
                                           Uri.parse(
-                                              'http://10.0.2.2:8080/hospital/Register'),
+                                              'http://192.168.1.141:8080/hospital/Register'),
                                           headers: {
                                             'Content-Type': 'application/json',
                                           },
@@ -382,7 +412,7 @@ class _RegisterState extends State<Register> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              Login()),
+                                                              Register()),
                                                     );
                                                   },
                                                   child: Text('OK'),
